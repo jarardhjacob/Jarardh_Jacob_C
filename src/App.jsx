@@ -10,7 +10,7 @@ function App() {
   return (
     <div className="bg-white dark:bg-black min-h-screen text-gray-900 dark:text-gray-100 transition-colors duration-300">
       <Navbar />
-      <main>
+      <main >
         <Hero />
         <About />
         <Skills />

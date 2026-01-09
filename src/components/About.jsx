@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 
 const About = () => {
     return (
-        <section id="about" className="py-20 animate-gradient-slow bg-gradient-to-br from-blue-50 via-purple-50 to-teal-50 dark:from-[#0a0a0a] dark:via-[#1a103c] dark:to-[#0a0a0a]">
+        <section id="about" className="py-20 bg-white dark:bg-black">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}

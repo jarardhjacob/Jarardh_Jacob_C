@@ -16,24 +16,3 @@
     @apply antialiased text-gray-900 bg-white dark:bg-black dark:text-gray-100 transition-colors duration-300;
   }
 }
-
-@layer utilities {
-  .animate-gradient-slow {
-    background-size: 400% 400%;
-    animation: gradient-xy 15s ease infinite;
-  }
-
-  @keyframes gradient-xy {
-    0% {
-      background-position: 0% 50%;
-    }
-
-    50% {
-      background-position: 100% 50%;
-    }
-
-    100% {
-      background-position: 0% 50%;
-    }
-  }
-}

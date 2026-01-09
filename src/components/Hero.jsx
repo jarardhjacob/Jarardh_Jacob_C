@@ -5,7 +5,7 @@ import MatrixRain from './MatrixRain';
 
 const Hero = () => {
   return (
-    <section className="min-h-screen flex items-center justify-center pt-16 bg-gradient-to-br from-white to-gray-50 dark:from-black dark:to-gray-900 overflow-hidden relative">
+    <section className="min-h-screen flex items-center justify-center pt-16 bg-gradient-to-br from-white to-white dark:from-black dark:to-black overflow-hidden relative">
         <MatrixRain />
         {/* Background blobs - keeping them as a subtle glow behind matrix rain if desired, or let rain take focus */}
         {/* Background blobs */}
