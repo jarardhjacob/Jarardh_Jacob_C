@@ -41,14 +41,29 @@ const Hero = () => {
       {/* Content Container */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
         <div className="flex flex-col items-center text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="inline-block px-3 py-1 mb-4 text-sm font-semibold tracking-wider text-indigo-600 dark:text-indigo-400 uppercase bg-indigo-50/80 dark:bg-indigo-900/20 backdrop-blur-sm rounded-full border border-indigo-200/50 dark:border-indigo-800/50"
-          >
-            Full Stack Developer
-          </motion.div>
+<motion.div
+  initial={{ opacity: 0, y: 20 }}
+  animate={{ opacity: 1, y: 0 }}
+  transition={{ duration: 0.5 }}
+  className="
+    inline-flex items-center justify-center
+    px-3 py-1
+    text-xs sm:text-sm
+    font-semibold
+    tracking-wide
+    text-indigo-600 dark:text-indigo-400
+    uppercase
+    bg-indigo-50/80 dark:bg-indigo-900/20
+    backdrop-blur-sm
+    rounded-full
+    border border-indigo-200/50 dark:border-indigo-800/50
+    whitespace-nowrap
+  "
+>
+  Full Stack Developer
+</motion.div>
+
+
           
           <motion.h1
             initial={{ opacity: 0, y: 20 }}

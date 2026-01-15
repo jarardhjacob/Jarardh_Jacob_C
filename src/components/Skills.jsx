@@ -1,33 +1,33 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { 
-  Code2, 
-  Braces, 
-  FileCode, 
-  Palette, 
-  Sparkles, 
-  Server, 
-  Zap, 
-  Database, 
-  Leaf, 
-  GitBranch, 
-  Wind, 
-  Package 
-} from 'lucide-react';
+  SiReact, 
+  SiJavascript, 
+  SiTypescript, 
+  SiTailwindcss, 
+  SiFramer, 
+  SiNodedotjs, 
+  SiExpress, 
+  SiPostgresql, 
+  SiMongodb, 
+  SiGithub,
+  SiVite, 
+  SiDocker 
+} from 'react-icons/si';
 
 const skills = [
-  { name: 'React', category: 'Frontend', icon: Code2, color: 'text-cyan-500' },
-  { name: 'JavaScript (ES6+)', category: 'Frontend', icon: Braces, color: 'text-yellow-500' },
-  { name: 'TypeScript', category: 'Frontend', icon: FileCode, color: 'text-blue-500' },
-  { name: 'Tailwind CSS', category: 'Frontend', icon: Palette, color: 'text-teal-500' },
-  { name: 'Framer Motion', category: 'Frontend', icon: Sparkles, color: 'text-purple-500' },
-  { name: 'Node.js', category: 'Backend', icon: Server, color: 'text-green-500' },
-  { name: 'Express', category: 'Backend', icon: Zap, color: 'text-gray-500' },
-  { name: 'PostgreSQL', category: 'Backend', icon: Database, color: 'text-blue-600' },
-  { name: 'MongoDB', category: 'Backend', icon: Leaf, color: 'text-green-600' },
-  { name: 'Git & GitHub', category: 'Tools', icon: GitBranch, color: 'text-orange-500' },
-  { name: 'Vite', category: 'Tools', icon: Wind, color: 'text-purple-600' },
-  { name: 'Docker', category: 'Tools', icon: Package, color: 'text-blue-400' },
+  { name: 'React', category: 'Frontend', icon: SiReact, color: 'text-gray-900 dark:text-white' },
+  { name: 'JavaScript (ES6+)', category: 'Frontend', icon: SiJavascript, color: 'text-gray-900 dark:text-white' },
+  { name: 'TypeScript', category: 'Frontend', icon: SiTypescript, color: 'text-gray-900 dark:text-white' },
+  { name: 'Tailwind CSS', category: 'Frontend', icon: SiTailwindcss, color: 'text-gray-900 dark:text-white' },
+  { name: 'Framer Motion', category: 'Frontend', icon: SiFramer, color: 'text-gray-900 dark:text-white' },
+  { name: 'Node.js', category: 'Backend', icon: SiNodedotjs, color: 'text-gray-900 dark:text-white' },
+  { name: 'Express', category: 'Backend', icon: SiExpress, color: 'text-gray-900 dark:text-white' },
+  { name: 'PostgreSQL', category: 'Backend', icon: SiPostgresql, color: 'text-gray-900 dark:text-white' },
+  { name: 'MongoDB', category: 'Backend', icon: SiMongodb, color: 'text-gray-900 dark:text-white' },
+  { name: 'Git & GitHub', category: 'Tools', icon: SiGithub, color: 'text-gray-900 dark:text-white' },
+  { name: 'Vite', category: 'Tools', icon: SiVite, color: 'text-gray-900 dark:text-white' },
+  { name: 'Docker', category: 'Tools', icon: SiDocker, color: 'text-gray-900 dark:text-white' },
 ];
 
 // Individual Skill Card Component with 3D Tilt
@@ -120,7 +120,7 @@ const SkillCard = ({ skill, index }) => {
             <motion.div
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 0.6, scale: 1.5 }}
-              className={`absolute inset-0 ${skill.color} blur-lg -z-10`}
+              className={`absolute inset-0 ${skill.color} bg-current blur-lg -z-10`}
             />
           )}
         </motion.div>

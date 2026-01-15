@@ -1,6 +1,7 @@
 import React, { useState, useRef } from 'react';
 import { motion } from 'framer-motion';
-import { Mail, Phone, MapPin, Send } from 'lucide-react';
+import { SiGmail, SiGooglemaps } from 'react-icons/si';
+import { FaPhone, FaPaperPlane } from 'react-icons/fa';
 import emailjs from '@emailjs/browser';
 
 const Contact = () => {
@@ -156,7 +157,7 @@ const Contact = () => {
                   whileHover={{ scale: 1.1, rotate: 5 }}
                   className="p-3 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-100 dark:border-gray-700"
                 >
-                  <Mail className="w-6 h-6 text-indigo-600 dark:text-indigo-400" />
+                  <SiGmail className="w-6 h-6 text-gray-900 dark:text-white" />
                 </motion.div>
                 <span>jerardhjcob@gmail.com</span>
               </motion.div>
@@ -171,7 +172,7 @@ const Contact = () => {
                   whileHover={{ scale: 1.1, rotate: 5 }}
                   className="p-3 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-100 dark:border-gray-700"
                 >
-                  <Phone className="w-6 h-6 text-indigo-600 dark:text-indigo-400" />
+                  <FaPhone className="w-6 h-6 text-gray-900 dark:text-white" />
                 </motion.div>
                 <span>+91 623568712</span>
               </motion.div>
@@ -186,7 +187,7 @@ const Contact = () => {
                   whileHover={{ scale: 1.1, rotate: 5 }}
                   className="p-3 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-100 dark:border-gray-700"
                 >
-                  <MapPin className="w-6 h-6 text-indigo-600 dark:text-indigo-400" />
+                  <SiGooglemaps className="w-6 h-6 text-gray-900 dark:text-white" />
                 </motion.div>
                 <span>Kochi, Kerala</span>
               </motion.div>
@@ -288,7 +289,7 @@ const Contact = () => {
                   className="w-full inline-flex items-center justify-center gap-2 px-8 py-4 text-base font-semibold text-white transition-all bg-indigo-600 rounded-lg hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800 hover:shadow-lg hover:shadow-indigo-500/20 disabled:opacity-70 disabled:cursor-not-allowed"
                 >
                   {isSending ? 'Sending...' : 'Send Message'}
-                  <Send className="w-4 h-4" />
+                  <FaPaperPlane className="w-4 h-4" />
                 </motion.button>
               </div>
             </motion.form>
