@@ -55,13 +55,11 @@ const About = () => {
             
             <div className="space-y-6">
               <p className="text-xl text-gray-600 dark:text-gray-300 leading-relaxed font-light">
-                I'm a <span className="text-indigo-600 dark:text-indigo-400 font-semibold">Full Stack Developer</span> with a passion for creating beautiful, functional, and user-centered digital experiences. 
+                I am a <span className="text-indigo-600 dark:text-indigo-400 font-semibold">Full Stack Developer and Trainer</span> with a strong passion for creating scalable, functional, and user-centered digital experiences.
               </p>
               
               <p className="text-lg text-gray-600 dark:text-gray-300 leading-relaxed">
-                With a strong foundation in both front-end and back-end web development, I bridge the gap between graphical design 
-                and technical implementation. My journey began with a curiosity for how things work on the web, which led me to dive deep into modern frameworks 
-                like <span className="font-medium text-gray-900 dark:text-white">React</span>, <span className="font-medium text-gray-900 dark:text-white">Node.js</span>, and the broader JavaScript ecosystem.
+                With solid experience across front-end and back-end web development, I effectively bridge the gap between design and technical execution. My journey into web development began with a curiosity about how digital products are built, which led me to develop deep expertise in modern frameworks such as <span className="font-medium text-gray-900 dark:text-white">React</span>, <span className="font-medium text-gray-900 dark:text-white">Node.js</span>, and the broader JavaScript ecosystem.
               </p>
             </div>
 

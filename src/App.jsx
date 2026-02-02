@@ -17,8 +17,8 @@ function App() {
         <Projects />
         <Contact />
       </main>
-      
-      <footer className="py-8 text-center text-sm text-gray-500 dark:text-gray-400 border-t border-gray-100 dark:border-gray-800">
+
+      <footer className="py-4 text-center text-sm text-gray-500 dark:text-gray-400 border-t border-gray-100 dark:border-gray-800">
         <p>© {new Date().getFullYear()} Jarardh Jacob C. All rights reserved.</p>
       </footer>
     </div>
