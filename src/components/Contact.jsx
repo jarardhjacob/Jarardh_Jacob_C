@@ -5,8 +5,9 @@ import { FaPhone, FaPaperPlane } from 'react-icons/fa';
 import emailjs from '@emailjs/browser';
 
 const Contact = () => {
-  const form = useRef();
-  const formCardRef = useRef(null);
+  // Use a SINGLE ref for both the DOM element (tilt animation) and logic (EmailJS)
+  const formRef = useRef();
+
   const [formState, setFormState] = useState({
     name: '',
     email: '',
@@ -17,18 +18,19 @@ const Contact = () => {
 
   // 3D Tilt Effect Handler
   const handleMouseMove = (e) => {
-    if (!formCardRef.current) return;
-    
-    const rect = formCardRef.current.getBoundingClientRect();
+    if (!formRef.current) return;
+
+    // Calculate tilt relative to the form's center
+    const rect = formRef.current.getBoundingClientRect();
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
-    
+
     const centerX = rect.width / 2;
     const centerY = rect.height / 2;
-    
+
     const rotateX = ((y - centerY) / centerY) * -10; // Max 10deg tilt
     const rotateY = ((x - centerX) / centerX) * 10;
-    
+
     setMousePosition({ x: rotateX, y: rotateY });
   };
 
@@ -38,7 +40,7 @@ const Contact = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    
+
     if (!formState.name || !formState.email || !formState.message) {
       alert('Please fill in all required fields.');
       return;
@@ -50,14 +52,15 @@ const Contact = () => {
     const TEMPLATE_ID = 'template_4ghruad';
     const PUBLIC_KEY = '9oSm1FavV0l__rCUV';
 
-    emailjs.sendForm(SERVICE_ID, TEMPLATE_ID, form.current, PUBLIC_KEY)
+    // Now correctly passing formRef.current (which points to the <form> element)
+    emailjs.sendForm(SERVICE_ID, TEMPLATE_ID, formRef.current, PUBLIC_KEY)
       .then((result) => {
-          console.log(result.text);
-          alert('Message sent successfully!');
-          setFormState({ name: '', email: '', message: '' });
+        console.log(result.text);
+        alert('Message sent successfully!');
+        setFormState({ name: '', email: '', message: '' });
       }, (error) => {
-          console.log(error.text);
-          alert('Failed to send message. Please try again.');
+        console.log(error.text);
+        alert('Failed to send message. Please try again.');
       })
       .finally(() => {
         setIsSending(false);
@@ -153,7 +156,7 @@ const Contact = () => {
                 animate="animate"
                 className="flex items-center gap-4 text-gray-600 dark:text-gray-300"
               >
-                <motion.div 
+                <motion.div
                   whileHover={{ scale: 1.1, rotate: 5 }}
                   className="p-3 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-100 dark:border-gray-700"
                 >
@@ -168,7 +171,7 @@ const Contact = () => {
                 transition={{ delay: 0.2 }}
                 className="flex items-center gap-4 text-gray-600 dark:text-gray-300"
               >
-                <motion.div 
+                <motion.div
                   whileHover={{ scale: 1.1, rotate: 5 }}
                   className="p-3 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-100 dark:border-gray-700"
                 >
@@ -183,7 +186,7 @@ const Contact = () => {
                 transition={{ delay: 0.4 }}
                 className="flex items-center gap-4 text-gray-600 dark:text-gray-300"
               >
-                <motion.div 
+                <motion.div
                   whileHover={{ scale: 1.1, rotate: 5 }}
                   className="p-3 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-100 dark:border-gray-700"
                 >
@@ -216,8 +219,9 @@ const Contact = () => {
             />
 
             {/* 3D Tilt Form Card */}
+            {/* IMPORTANT: We use a single Ref for both the form element (EmailJS) and the animation logic */}
             <motion.form
-              ref={formCardRef}
+              ref={formRef}
               onMouseMove={handleMouseMove}
               onMouseLeave={handleMouseLeave}
               animate={{
