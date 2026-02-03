@@ -175,9 +175,9 @@ const Hero = () => {
           </Suspense>
 
           {/* Floating snippet decoration (Optional subtle dev vibe) */}
-          <div className="absolute -top-10 -right-10 p-4 bg-black/40 backdrop-blur-md rounded-xl border border-white/10 text-xs font-mono text-indigo-300 hidden xl:block opacity-60 hover:opacity-100 transition-opacity select-none">
+          {/* <div className="absolute -top-10 -right-10 p-4 bg-black/40 backdrop-blur-md rounded-xl border border-white/10 text-xs font-mono text-indigo-300 hidden xl:block opacity-60 hover:opacity-100 transition-opacity select-none">
             &lt;Globe /&gt;
-          </div>
+          </div> */}
         </div>
 
       </div>
