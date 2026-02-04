@@ -210,8 +210,7 @@ const TechGlobe = () => {
 
             </motion.div>
 
-            {/* Fog - CSS-only gradient */}
-            <div className="absolute -bottom-20 left-0 right-0 h-40 bg-gradient-to-t from-white dark:from-black via-white/80 dark:via-black/80 to-transparent z-10 pointer-events-none" />
+
         </div>
     );
 };
