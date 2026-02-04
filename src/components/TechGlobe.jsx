@@ -130,6 +130,7 @@ const TechGlobe = () => {
 
     // Motion Values
     const rotateY = useMotionValue(0);
+    const rotateX = useMotionValue(10); // Initial tilt
     const [isDragging, setIsDragging] = useState(false);
     const [isHovered, setIsHovered] = useState(false);
 
@@ -145,6 +146,7 @@ const TechGlobe = () => {
 
     const handlePan = (event, info) => {
         rotateY.set(rotateY.get() + info.delta.x * GLOBE_CONFIG.DRAG_SENSITIVITY);
+        rotateX.set(rotateX.get() - info.delta.y * GLOBE_CONFIG.DRAG_SENSITIVITY);
     };
 
     return (
@@ -154,8 +156,8 @@ const TechGlobe = () => {
                 animate={controls}
                 style={{
                     rotateY,
-                    rotateZ: 12,
-                    rotateX: 10,
+                    rotateX,
+                    rotateZ: 0,
                     transformStyle: "preserve-3d",
                 }}
                 onPan={handlePan}
@@ -204,7 +206,7 @@ const TechGlobe = () => {
                 })}
 
                 {/* Icons - Dynamic list */}
-                <IconsLayer icons={displayedIcons} globeRotate={rotateY} />
+                <IconsLayer icons={displayedIcons} globeRotate={rotateY} globeRotateX={rotateX} />
 
             </motion.div>
 
@@ -215,25 +217,36 @@ const TechGlobe = () => {
 };
 
 // Memoized Icons Layer
-const IconsLayer = React.memo(({ icons, globeRotate }) => (
+const IconsLayer = React.memo(({ icons, globeRotate, globeRotateX }) => (
     <>
         {icons.map((icon, index) => (
-            <OrbitIcon key={index} {...icon} globeRotate={globeRotate} />
+            <OrbitIcon key={index} {...icon} globeRotate={globeRotate} globeRotateX={globeRotateX} />
         ))}
     </>
 ));
 
 // Memoized Helper component
 // Using motion value for opacity prevents re-renders even with changing values
-const OrbitIcon = React.memo(({ Icon, color, rotateY, rotateX, globeRotate }) => {
-    // Calculate dynamic opacity based on facing direction
-    const opacity = useTransform(globeRotate, (latestValue) => {
-        // Normalize angle to radians
-        const angle = (latestValue + rotateY) * (Math.PI / 180);
-        const cos = Math.cos(angle);
-        // Map cosine [-1, 1] to opacity [0.2, 1]
-        // Front (1) -> 1, Back (-1) -> 0.2
-        return 0.2 + (0.8 * (1 + cos) / 2);
+const OrbitIcon = React.memo(({ Icon, color, rotateY, rotateX, globeRotate, globeRotateX }) => {
+    // Calculate dynamic opacity based on facing direction (3D Dot Product)
+    const opacity = useTransform([globeRotate, globeRotateX], ([ry, rx]) => {
+        const d_to_r = Math.PI / 180;
+
+        // Icon position angles
+        const phi = rotateX * d_to_r;   // Latitude
+        const theta = rotateY * d_to_r; // Longitude
+
+        // Globe rotation angles
+        const alpha = rx * d_to_r;
+        const beta = ry * d_to_r;
+
+        // Normal vector Z-component after rotation (Projection towards viewer)
+        // Nz' = sin(alpha)sin(phi) + cos(alpha)cos(phi)cos(theta + beta)
+        const nz = Math.sin(alpha) * Math.sin(phi) + Math.cos(alpha) * Math.cos(phi) * Math.cos(theta + beta);
+
+        // Map [-1, 1] to opacity [0.1, 1]
+        // If nz > 0, it's facing front.
+        return 0.1 + (0.9 * (nz + 1) / 2);
     });
 
     return (
@@ -245,7 +258,12 @@ const OrbitIcon = React.memo(({ Icon, color, rotateY, rotateX, globeRotate }) =>
         >
             <motion.div
                 className="p-3 bg-white/10 backdrop-blur-md rounded-xl border border-white/20 shadow-lg transform-style-3d hover:scale-[1.15] transition-transform duration-200 cursor-pointer"
-                style={{ opacity }}
+                style={{
+                    opacity,
+                    // Billboard effect: Counter-rotate to face viewer
+                    rotateX: useTransform(globeRotateX, v => -v - rotateX),
+                    rotateY: useTransform(globeRotate, v => -v - rotateY),
+                }}
             >
                 <Icon style={{ color }} className="w-8 h-8 sm:w-10 sm:h-10 opacity-90" />
             </motion.div>
