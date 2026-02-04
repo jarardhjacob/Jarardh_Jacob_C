@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import NeuralBackground from './NeuralBackground';
 
 const About = () => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
@@ -9,13 +10,13 @@ const About = () => {
     const rect = e.currentTarget.getBoundingClientRect();
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
-    
+
     const centerX = rect.width / 2;
     const centerY = rect.height / 2;
-    
+
     const rotateX = ((y - centerY) / centerY) * -15;
     const rotateY = ((x - centerX) / centerX) * 15;
-    
+
     setMousePosition({ x: rotateX, y: rotateY });
   };
 
@@ -25,8 +26,9 @@ const About = () => {
   };
 
   return (
-    <section id="about" className="py-20 bg-white dark:bg-black overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="about" className="py-20 bg-white dark:bg-black overflow-hidden relative">
+      <NeuralBackground />
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -37,7 +39,7 @@ const About = () => {
           {/* Text Content */}
           <div className="flex-[1.2] space-y-8">
             <div className="space-y-4">
-              <motion.h2 
+              <motion.h2
                 initial={{ opacity: 0, x: -20 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
@@ -45,19 +47,19 @@ const About = () => {
               >
                 About Me
               </motion.h2>
-              <motion.div 
+              <motion.div
                 initial={{ scaleX: 0 }}
                 whileInView={{ scaleX: 1 }}
                 viewport={{ once: true }}
                 className="w-24 h-1.5 bg-gradient-to-r from-indigo-600 to-purple-600 rounded-full origin-left"
               />
             </div>
-            
+
             <div className="space-y-6">
               <p className="text-xl text-gray-600 dark:text-gray-300 leading-relaxed font-light">
                 I am a <span className="text-indigo-600 dark:text-indigo-400 font-semibold">Full Stack Developer and Trainer</span> with a strong passion for creating scalable, functional, and user-centered digital experiences.
               </p>
-              
+
               <p className="text-lg text-gray-600 dark:text-gray-300 leading-relaxed">
                 With solid experience across front-end and back-end web development, I effectively bridge the gap between design and technical execution. My journey into web development began with a curiosity about how digital products are built, which led me to develop deep expertise in modern frameworks such as <span className="font-medium text-gray-900 dark:text-white">React</span>, <span className="font-medium text-gray-900 dark:text-white">Node.js</span>, and the broader JavaScript ecosystem.
               </p>
@@ -75,8 +77,8 @@ const About = () => {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: stat.delay }}
-                  whileHover={{ 
-                    y: -10, 
+                  whileHover={{
+                    y: -10,
                     scale: 1.02,
                     boxShadow: "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)"
                   }}
@@ -95,8 +97,8 @@ const About = () => {
 
           {/* Image Visual with 3D Tilt & Floating Idle */}
           <div className="flex-1 w-full flex justify-center relative">
-            <motion.div 
-              animate={{ 
+            <motion.div
+              animate={{
                 y: [0, -15, 0],
               }}
               transition={{
@@ -119,7 +121,7 @@ const About = () => {
                 }}
                 className="absolute -inset-4 bg-gradient-to-tr from-indigo-500 via-purple-500 to-pink-500 rounded-3xl blur-2xl -z-10"
               />
-              
+
               <motion.div
                 onMouseMove={handleMouseMove}
                 onMouseEnter={() => setIsHovered(true)}
@@ -153,7 +155,7 @@ const About = () => {
                   className="w-full h-full object-cover"
                   style={{ transform: "translateZ(30px)" }}
                 />
-                
+
                 {/* Inner Border Reflection */}
                 <div className="absolute inset-0 border border-white/20 rounded-3xl pointer-events-none z-20" />
               </motion.div>
