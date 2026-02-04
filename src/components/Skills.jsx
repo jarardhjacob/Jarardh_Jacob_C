@@ -1,19 +1,19 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { 
-  SiReact, 
-  SiJavascript, 
-  SiTypescript, 
+import {
+  SiReact,
+  SiJavascript,
+  SiTypescript,
   SiNextdotjs,
-  SiTailwindcss, 
-  SiFramer, 
-  SiNodedotjs, 
-  SiExpress, 
-  SiPostgresql, 
-  SiMongodb, 
+  SiTailwindcss,
+  SiFramer,
+  SiNodedotjs,
+  SiExpress,
+  SiPostgresql,
+  SiMongodb,
   SiGithub,
-  SiVite, 
-  SiDocker 
+  SiVite,
+  SiDocker
 } from 'react-icons/si';
 
 const skills = [
@@ -34,8 +34,52 @@ const skills = [
 
 const Skills = () => {
   return (
-    <section id="skills" className="py-20 bg-gray-50 dark:bg-gray-900/50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="skills" className="py-20 bg-gray-50 dark:bg-gray-900/50 relative overflow-hidden">
+      {/* Subtle Animated Background */}
+      <div className="absolute inset-0 pointer-events-none">
+        <motion.div
+          animate={{
+            x: [-100, 100, -100],
+            y: [-50, 50, -50],
+            scale: [1, 1.2, 1],
+            rotate: [0, 180, 360],
+          }}
+          transition={{
+            duration: 20,
+            repeat: Infinity,
+            ease: "linear"
+          }}
+          className="absolute -top-20 -left-20 w-[500px] h-[500px] bg-indigo-500/10 dark:bg-indigo-500/20 rounded-full blur-[100px]"
+        />
+        <motion.div
+          animate={{
+            x: [100, -100, 100],
+            y: [50, -50, 50],
+            scale: [1.2, 1, 1.2],
+            rotate: [360, 180, 0],
+          }}
+          transition={{
+            duration: 25,
+            repeat: Infinity,
+            ease: "linear"
+          }}
+          className="absolute top-1/2 -right-20 w-[400px] h-[400px] bg-purple-500/10 dark:bg-purple-500/20 rounded-full blur-[100px]"
+        />
+        <motion.div
+          animate={{
+            scale: [1, 1.3, 1],
+            opacity: [0.3, 0.5, 0.3],
+          }}
+          transition={{
+            duration: 15,
+            repeat: Infinity,
+            ease: "easeInOut"
+          }}
+          className="absolute -bottom-40 left-1/3 w-[600px] h-[600px] bg-indigo-300/10 dark:bg-indigo-900/10 rounded-full blur-[120px]"
+        />
+      </div>
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="text-center mb-16">
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
@@ -66,13 +110,22 @@ const Skills = () => {
                 whileHover={{ scale: 1.1 }}
                 className="flex flex-col items-center gap-3 group"
               >
-                <div className="relative flex items-center justify-center p-4 rounded-full bg-white dark:bg-gray-800 shadow-md group-hover:shadow-lg transition-all dark:shadow-gray-900/50 border border-gray-100 dark:border-gray-700">
+                <motion.div
+                  animate={{ y: [0, -8, 0] }}
+                  transition={{
+                    duration: 4,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                    delay: index * 0.2
+                  }}
+                  className="relative flex items-center justify-center p-4 rounded-full bg-white dark:bg-gray-800 shadow-md group-hover:shadow-lg transition-all dark:shadow-gray-900/50 border border-gray-100 dark:border-gray-700"
+                >
                   <Icon className={`w-8 h-8 ${skill.color} transition-transform duration-300 group-hover:scale-110`} />
-                  
+
                   {/* Subtle Glow Effect on Hover */}
                   <div className={`absolute inset-0 rounded-full opacity-0 group-hover:opacity-20 transition-opacity bg-current ${skill.color}`} />
-                </div>
-                
+                </motion.div>
+
                 <span className="text-sm font-medium text-gray-600 dark:text-gray-300 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">
                   {skill.name}
                 </span>
