@@ -13,13 +13,13 @@ const NavLink = ({ link, index, activeSection, handleScrollClick }) => {
     const rect = e.currentTarget.getBoundingClientRect();
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
-    
+
     const centerX = rect.width / 2;
     const centerY = rect.height / 2;
-    
+
     const rotateX = ((y - centerY) / centerY) * -10;
     const rotateY = ((x - centerX) / centerX) * 10;
-    
+
     setMousePosition({ x: rotateX, y: rotateY });
   };
 
@@ -33,8 +33,8 @@ const NavLink = ({ link, index, activeSection, handleScrollClick }) => {
       href={link.href}
       onClick={(e) => handleScrollClick(e, link.href)}
       initial={{ opacity: 0, y: -10 }}
-      animate={{ 
-        opacity: 1, 
+      animate={{
+        opacity: 1,
         y: 0,
         rotateX: mousePosition.x,
         rotateY: mousePosition.y,
@@ -47,14 +47,13 @@ const NavLink = ({ link, index, activeSection, handleScrollClick }) => {
         transformStyle: "preserve-3d",
         perspective: "1000px",
       }}
-      className={`relative px-3 py-2 rounded-md text-sm font-medium transition-colors ${
-        isActive
+      className={`relative px-3 py-2 rounded-md text-sm font-medium transition-colors ${isActive
           ? 'text-indigo-600 dark:text-indigo-400'
           : 'text-gray-600 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400'
-      }`}
+        }`}
     >
       {link.title}
-      
+
       {/* Glowing Active Underline */}
       {isActive && (
         <>
@@ -71,7 +70,7 @@ const NavLink = ({ link, index, activeSection, handleScrollClick }) => {
           />
         </>
       )}
-      
+
       {/* Hover underline glow */}
       {isHovered && !isActive && (
         <motion.div
@@ -136,7 +135,7 @@ const Navbar = () => {
           top: offsetPosition,
           behavior: 'smooth'
         });
-        
+
         window.history.pushState({}, '', href);
       }
     }, 100);
@@ -147,13 +146,13 @@ const Navbar = () => {
     const rect = e.currentTarget.getBoundingClientRect();
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
-    
+
     const centerX = rect.width / 2;
     const centerY = rect.height / 2;
-    
+
     const rotateX = ((y - centerY) / centerY) * -15;
     const rotateY = ((x - centerX) / centerX) * 15;
-    
+
     setLogoHover({ x: rotateX, y: rotateY });
   };
 
@@ -170,7 +169,7 @@ const Navbar = () => {
               setLogoHover({ x: 0, y: 0 });
               setIsLogoHovered(false);
             }}
-            animate={{ 
+            animate={{
               rotateX: logoHover.x,
               rotateY: logoHover.y,
               scale: isLogoHovered ? 1.05 : 1,
@@ -183,74 +182,74 @@ const Navbar = () => {
             className="relative flex items-center gap-1 cursor-pointer z-50 group select-none"
             onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
           >
-             {/* 2. The "Jarardh" Text */}
-             <div className="relative" style={{ transformStyle: "preserve-3d" }}>
-                 <motion.div
-                   initial={{ opacity: 0, x: -20, filter: 'blur(8px)', backgroundPosition: '0% 50%' }}
-                   animate={{ 
-                     opacity: 1, 
-                     x: 0, 
-                     filter: 'blur(0px)',
-                     backgroundPosition: ['0% 50%', '100% 50%', '0% 50%']
-                   }}
-                   transition={{ 
-                     opacity: { delay: 0.5, duration: 0.7, ease: "easeOut" },
-                     x: { delay: 0.5, duration: 0.7, ease: "easeOut" },
-                     filter: { delay: 0.5, duration: 0.7, ease: "easeOut" },
-                     backgroundPosition: {
-                       duration: 5,
-                       repeat: Infinity,
-                       ease: "linear",
-                       repeatType: "loop"
-                     }
-                   }}
-                   className="font-bold text-2xl tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-gray-900 via-indigo-500 to-gray-900 dark:from-white dark:via-indigo-400 dark:to-white bg-[length:200%_auto]"
-                   style={{ transform: "translateZ(20px)" }}
-                 >
-                   Jarardh
-                 </motion.div>
-                 
-                 {/* Layered Shadow for Depth */}
-                 <motion.div
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ delay: 0.7, duration: 0.8 }}
-                    className="absolute inset-0 text-indigo-500/20 dark:text-indigo-400/20 blur-[2px]"
-                    style={{ transform: "translateZ(5px)", pointerEvents: 'none' }}
-                 >
-                    Jarardh
-                 </motion.div>
-             </div>
+            {/* 2. The "Jarardh" Text */}
+            <div className="relative" style={{ transformStyle: "preserve-3d" }}>
+              <motion.div
+                initial={{ opacity: 0, x: -20, filter: 'blur(8px)', backgroundPosition: '0% 50%' }}
+                animate={{
+                  opacity: 1,
+                  x: 0,
+                  filter: 'blur(0px)',
+                  backgroundPosition: ['0% 50%', '100% 50%', '0% 50%']
+                }}
+                transition={{
+                  opacity: { delay: 0.5, duration: 0.7, ease: "easeOut" },
+                  x: { delay: 0.5, duration: 0.7, ease: "easeOut" },
+                  filter: { delay: 0.5, duration: 0.7, ease: "easeOut" },
+                  backgroundPosition: {
+                    duration: 5,
+                    repeat: Infinity,
+                    ease: "linear",
+                    repeatType: "loop"
+                  }
+                }}
+                className="font-bold text-2xl tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-gray-900 via-indigo-500 to-gray-900 dark:from-white dark:via-indigo-400 dark:to-white bg-[length:200%_auto]"
+                style={{ transform: "translateZ(20px)" }}
+              >
+                Jarardh
+              </motion.div>
 
-             {/* 1. The Glowing Dot */}
-             <motion.div
-               initial={{ scale: 0, opacity: 0 }}
-               animate={{ scale: 1, opacity: 1 }}
-               transition={{ 
-                 type: "spring",
-                 stiffness: 200,
-                 damping: 15,
-                 delay: 0.1 
-               }}
-               className="relative flex items-center justify-center p-1"
-               style={{ transform: "translateZ(30px)" }}
-             >
-                {/* Core Dot with Indigo Glow */}
-                <div className="w-3 h-3 bg-indigo-600 dark:bg-indigo-500 rounded-full shadow-[0_0_15px_rgba(99,102,241,0.8)] ring-2 ring-indigo-400/20" />
-                
-                {/* Soft Pulse Ring */}
-                <motion.div 
-                  animate={{ 
-                    opacity: [0.4, 0] 
-                  }}
-                  transition={{ 
-                    duration: 2, 
-                    repeat: Infinity, 
-                    ease: "easeOut" 
-                  }}
-                  className="absolute inset-0 bg-indigo-500 rounded-full -z-10"
-                />
-             </motion.div>
+              {/* Layered Shadow for Depth */}
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.7, duration: 0.8 }}
+                className="absolute inset-0 text-indigo-500/20 dark:text-indigo-400/20 blur-[2px]"
+                style={{ transform: "translateZ(5px)", pointerEvents: 'none' }}
+              >
+                Jarardh
+              </motion.div>
+            </div>
+
+            {/* 1. The Glowing Dot */}
+            <motion.div
+              initial={{ scale: 0, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              transition={{
+                type: "spring",
+                stiffness: 200,
+                damping: 15,
+                delay: 0.1
+              }}
+              className="relative flex items-center justify-center p-1"
+              style={{ transform: "translateZ(30px)" }}
+            >
+              {/* Core Dot with Indigo Glow */}
+              <div className="w-3 h-3 bg-indigo-600 dark:bg-indigo-500 rounded-full shadow-[0_0_15px_rgba(99,102,241,0.8)] ring-2 ring-indigo-400/20" />
+
+              {/* Soft Pulse Ring */}
+              <motion.div
+                animate={{
+                  opacity: [0.4, 0]
+                }}
+                transition={{
+                  duration: 2,
+                  repeat: Infinity,
+                  ease: "easeOut"
+                }}
+                className="absolute inset-0 bg-indigo-500 rounded-full -z-10"
+              />
+            </motion.div>
           </motion.div>
 
           {/* Desktop Menu */}
@@ -278,12 +277,12 @@ const Navbar = () => {
               >
                 Resume
               </motion.a>
-              
+
               {/* Floating Theme Toggle */}
               <motion.button
                 initial={{ opacity: 0, scale: 0.5 }}
-                animate={{ 
-                  opacity: 1, 
+                animate={{
+                  opacity: 1,
                   scale: 1,
                   y: [0, -3, 0],
                 }}
@@ -325,7 +324,7 @@ const Navbar = () => {
           {/* Mobile menu button */}
           <div className="md:hidden flex items-center gap-4">
             <motion.button
-              animate={{ 
+              animate={{
                 y: [0, -3, 0],
               }}
               transition={{
@@ -373,7 +372,7 @@ const Navbar = () => {
             transition={{ duration: 0.3, ease: "easeOut" }}
             className="md:hidden bg-white/70 dark:bg-black/70 backdrop-blur-xl border-b border-gray-200/50 dark:border-gray-700/50 overflow-hidden shadow-2xl"
             style={{
-              background: theme === 'dark' 
+              background: theme === 'dark'
                 ? 'linear-gradient(180deg, rgba(0,0,0,0.8) 0%, rgba(17,24,39,0.9) 100%)'
                 : 'linear-gradient(180deg, rgba(255,255,255,0.8) 0%, rgba(249,250,251,0.9) 100%)',
             }}
@@ -388,11 +387,10 @@ const Navbar = () => {
                   animate={{ opacity: 1, x: 0 }}
                   exit={{ opacity: 0, x: -20 }}
                   transition={{ delay: index * 0.05 }}
-                  className={`block px-3 py-2 rounded-md text-base font-medium transition-all backdrop-blur-sm ${
-                    activeSection === link.href
+                  className={`block px-3 py-2 rounded-md text-base font-medium transition-all backdrop-blur-sm ${activeSection === link.href
                       ? 'text-indigo-600 dark:text-indigo-400 bg-indigo-50/80 dark:bg-indigo-900/30 shadow-lg'
                       : 'text-gray-600 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 hover:bg-gray-50/50 dark:hover:bg-gray-800/50'
-                  }`}
+                    }`}
                 >
                   {link.title}
                 </motion.a>
