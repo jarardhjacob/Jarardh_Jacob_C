@@ -13,11 +13,11 @@ const projects = [
     details: {
       overview: "I’m excited to share the final production build of a comprehensive academic ecosystem I developed, transforming this project from a design concept into a live, deployed application using a high-performance, modern stack.",
       images: [
+        "E-book Image/img1.png",
+        "E-book Image/img2.png",
         "E-book Image/img3.png",
         "E-book Image/img4.png",
-        "E-book Image/img5.png",
-        "E-book Image/img6.png",
-        "E-book Image/img7.png"
+        "E-book Image/img5.png"
 
       ],
       architecture: [
