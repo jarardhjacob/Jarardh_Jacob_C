@@ -3,7 +3,7 @@ import { motion, useMotionValue, useAnimationFrame, useAnimation, useReducedMoti
 import {
     SiJavascript, SiReact, SiNodedotjs, SiGit, SiDocker, SiTypescript,
     SiNextdotjs, SiTailwindcss, SiFramer, SiExpress, SiPostgresql,
-    SiMongodb, SiVite, SiGithub
+    SiMongodb, SiVite, SiGithub, SiSupabase
 } from 'react-icons/si';
 
 // --- Constants ---
@@ -37,6 +37,7 @@ const ALL_ICONS = [
     { Icon: SiGithub, color: "#181717", rotateY: 275, rotateX: -10 },
     { Icon: SiVite, color: "#646CFF", rotateY: 300, rotateX: 15 },
     { Icon: SiDocker, color: "#2496ED", rotateY: 325, rotateX: -20 },
+    { Icon: SiSupabase, color: "#3ECF8E", rotateY: 350, rotateX: 10 },
 ];
 
 const TechGlobe = () => {

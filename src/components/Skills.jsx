@@ -13,7 +13,8 @@ import {
   SiMongodb,
   SiGithub,
   SiVite,
-  SiDocker
+  SiDocker,
+  SiSupabase
 } from 'react-icons/si';
 
 const skills = [
@@ -30,6 +31,7 @@ const skills = [
   { name: 'Git & GitHub', icon: SiGithub, color: 'text-[#F05032]' },
   { name: 'Vite', icon: SiVite, color: 'text-[#646CFF]' },
   { name: 'Docker', icon: SiDocker, color: 'text-[#2496ED]' },
+  { name: 'Supabase', icon: SiSupabase, color: 'text-[#3ECF8E]' },
 ];
 
 const Skills = () => {
