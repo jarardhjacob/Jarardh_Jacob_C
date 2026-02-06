@@ -7,17 +7,17 @@ const projects = [
     title: 'DRM Controlled E-Book Platform',
     shortDescription: 'A secure academic ecosystem featuring a custom DRM reader with anti-piracy protection, an interactive mock test engine, and integrated academic service portals.',
     tags: ['React', 'Node.js', 'Express', 'Supabase', 'PostgreSQL'],
-    image: 'public/E-book Image/Screenshot 2026-02-05 101532.png',
+    image: 'E-book Image/img3.png',
     liveUrl: 'https://e-book-gray-one.vercel.app/',
     LinkedIN: 'https://www.linkedin.com/posts/jarardh-jacob-c_fullstackdeveloper-pernstack-postgresql-ugcPost-7425405669618442240-UhdM?utm_source=share&utm_medium=member_desktop&rcm=ACoAAD68TEIBHN3tj4uRifzDC9XuPjhCdvIfdps',
     details: {
       overview: "I’m excited to share the final production build of a comprehensive academic ecosystem I developed, transforming this project from a design concept into a live, deployed application using a high-performance, modern stack.",
       images: [
-        "public/E-book Image/Screenshot 2026-02-05 101301.png",
-        "public/E-book Image/Screenshot 2026-02-05 101432.png",
-        "public/E-book Image/Screenshot 2026-02-05 101532.png",
-        "public/E-book Image/Screenshot 2026-02-05 101619.png",
-        "public/E-book Image/Screenshot 2026-02-05 101747.png"
+        "E-book Image/img3.png",
+        "E-book Image/img4.png",
+        "E-book Image/img5.png",
+        "E-book Image/img6.png",
+        "E-book Image/img7.png"
 
       ],
       architecture: [
