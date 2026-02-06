@@ -3,7 +3,7 @@ import { motion, useMotionValue, useAnimationFrame, useAnimation, useReducedMoti
 import {
     SiJavascript, SiReact, SiNodedotjs, SiGit, SiDocker, SiTypescript,
     SiNextdotjs, SiTailwindcss, SiFramer, SiExpress, SiPostgresql,
-    SiMongodb, SiVite, SiGithub, SiSupabase
+    SiMongodb, SiVite, SiGithub, SiSupabase, SiVercel, SiRender
 } from 'react-icons/si';
 
 // --- Constants ---
@@ -22,23 +22,42 @@ const GLOBE_CONFIG = {
 };
 
 // Define icons data outside component to avoid recreation
-const ALL_ICONS = [
-    { Icon: SiReact, color: "#61DAFB", rotateY: 0, rotateX: -20 },
-    { Icon: SiNextdotjs, color: "#000000", rotateY: 25, rotateX: 10 },
-    { Icon: SiJavascript, color: "#F7DF1E", rotateY: 50, rotateX: 20 },
-    { Icon: SiTypescript, color: "#3178C6", rotateY: 75, rotateX: -15 },
-    { Icon: SiTailwindcss, color: "#06B6D4", rotateY: 100, rotateX: 25 },
-    { Icon: SiFramer, color: "#0055FF", rotateY: 125, rotateX: -10 },
-    { Icon: SiNodedotjs, color: "#339933", rotateY: 150, rotateX: 15 },
-    { Icon: SiExpress, color: "#000000", rotateY: 175, rotateX: -20 },
-    { Icon: SiPostgresql, color: "#336791", rotateY: 200, rotateX: 20 },
-    { Icon: SiMongodb, color: "#47A248", rotateY: 225, rotateX: -15 },
-    { Icon: SiGit, color: "#F05032", rotateY: 250, rotateX: 25 },
-    { Icon: SiGithub, color: "#181717", rotateY: 275, rotateX: -10 },
-    { Icon: SiVite, color: "#646CFF", rotateY: 300, rotateX: 15 },
-    { Icon: SiDocker, color: "#2496ED", rotateY: 325, rotateX: -20 },
-    { Icon: SiSupabase, color: "#3ECF8E", rotateY: 350, rotateX: 10 },
+// Define exact icons data
+const ICONS_DATA = [
+    { Icon: SiReact, color: "#61DAFB" },
+    { Icon: SiNextdotjs, color: "#000000" },
+    { Icon: SiJavascript, color: "#F7DF1E" },
+    { Icon: SiTypescript, color: "#3178C6" },
+    { Icon: SiTailwindcss, color: "#06B6D4" },
+    { Icon: SiFramer, color: "#0055FF" },
+    { Icon: SiNodedotjs, color: "#339933" },
+    { Icon: SiExpress, color: "#000000" },
+    { Icon: SiPostgresql, color: "#336791" },
+    { Icon: SiMongodb, color: "#47A248" },
+    { Icon: SiGit, color: "#F05032" },
+    { Icon: SiGithub, color: "#181717" },
+    { Icon: SiVite, color: "#646CFF" },
+    { Icon: SiDocker, color: "#2496ED" },
+    { Icon: SiSupabase, color: "#3ECF8E" },
+    { Icon: SiVercel, color: "#000000" },
+    { Icon: SiRender, color: "#46E3B7" },
 ];
+
+// Fibonacci Sphere Distribution
+// Calculates evenly distributed points on a sphere
+const ALL_ICONS = ICONS_DATA.map((item, i) => {
+    const phi = Math.acos(-1 + (2 * i) / ICONS_DATA.length);
+    const theta = Math.sqrt(ICONS_DATA.length * Math.PI) * phi;
+
+    return {
+        ...item,
+        // Convert spherical coordinates to CSS rotateX/rotateY
+        // rotateY is longitude (around Y axis)
+        // rotateX is latitude (tilt up/down)
+        rotateX: (phi * 180 / Math.PI) - 90,
+        rotateY: (theta * 180 / Math.PI),
+    };
+});
 
 const TechGlobe = () => {
     const [isMobile, setIsMobile] = useState(false);
