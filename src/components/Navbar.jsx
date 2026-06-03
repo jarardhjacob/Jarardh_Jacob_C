@@ -264,7 +264,7 @@ const Navbar = () => {
                   handleScrollClick={handleScrollClick}
                 />
               ))}
-              <motion.a
+              {/* <motion.a
                 href="/resume.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -276,7 +276,7 @@ const Navbar = () => {
                 className="px-4 py-2 text-sm font-semibold text-white bg-indigo-600 rounded-lg hover:bg-indigo-700 transition-colors shadow-lg hover:shadow-indigo-500/50"
               >
                 Resume
-              </motion.a>
+              </motion.a> */}
 
               {/* Floating Theme Toggle */}
               <motion.button

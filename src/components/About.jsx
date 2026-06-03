@@ -68,8 +68,8 @@ const About = () => {
             {/* Hover Lift Stats */}
             <div className="grid grid-cols-2 gap-6 mt-10">
               {[
-                { label: 'Years Experience', value: '1+', delay: 0 },
-                { label: 'Projects Completed', value: '2+', delay: 0.1 }
+                { label: 'Years Experience', value: '2+', delay: 0 },
+                { label: 'Projects Completed', value: '6+', delay: 0.1 }
               ].map((stat, i) => (
                 <motion.div
                   key={i}

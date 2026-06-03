@@ -45,6 +45,7 @@ const projects = [
     image: 'https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
     liveUrl: '#',
     githubUrl: '#',
+    isUpcoming: true,
     details: {
       overview: "A streamlined task management solution built for remote teams to collaborate effectively.",
       features: [
@@ -60,6 +61,7 @@ const projects = [
     image: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
     liveUrl: '#',
     githubUrl: '#',
+    isUpcoming: true,
     details: {
       overview: "An AI-powered content creation assistant that helps scale marketing efforts.",
       features: [
@@ -119,7 +121,14 @@ const ProjectModal = ({ project, onClose }) => {
           />
           <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-transparent to-transparent opacity-80" />
           <div className="absolute bottom-6 left-6 right-6">
-            <h2 className="text-3xl font-bold text-white mb-2 shadow-sm">{project.title}</h2>
+            <div className="flex items-center gap-3 mb-2 shadow-sm">
+              <h2 className="text-3xl font-bold text-white">{project.title}</h2>
+              {project.isUpcoming && (
+                <span className="px-3 py-1 text-sm font-bold text-amber-800 bg-amber-200 rounded-full">
+                  Upcoming
+                </span>
+              )}
+            </div>
             <div className="flex flex-wrap gap-2">
               {project.tags.map(tag => (
                 <span key={tag} className="px-3 py-1 text-xs font-medium text-white bg-white/20 backdrop-blur-md rounded-full border border-white/30">
@@ -333,6 +342,216 @@ const ProjectCard = ({ project, index, onClick }) => {
   );
 };
 
+const UpcomingModal = ({ project, onClose }) => {
+  useEffect(() => {
+    document.body.style.overflow = 'hidden';
+    return () => { document.body.style.overflow = 'unset'; };
+  }, []);
+
+  if (!project) return null;
+
+  return (
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6"
+    >
+      {/* Backdrop */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        transition={{ duration: 0.4 }}
+        className="absolute inset-0 bg-[#030712]/80 backdrop-blur-md"
+        onClick={onClose}
+      />
+
+      {/* Modal Content */}
+      <motion.div
+        initial={{ scale: 0.9, opacity: 0, y: 20 }}
+        animate={{ scale: 1, opacity: 1, y: 0 }}
+        exit={{ scale: 0.9, opacity: 0, y: 20 }}
+        transition={{ type: "spring", damping: 25, stiffness: 300 }}
+        className="relative w-full max-w-lg bg-[#0a0f1c] rounded-[24px] shadow-[0_0_60px_rgba(79,70,229,0.15)] border border-white/10 flex flex-col items-center p-8 sm:p-10 text-center overflow-hidden"
+      >
+        {/* Background Effects */}
+        <div className="absolute inset-0 pointer-events-none z-0">
+          <motion.div
+            animate={{ x: [-20, 20, -20], y: [-20, 20, -20] }}
+            transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
+            className="absolute -top-32 -left-32 w-80 h-80 bg-indigo-500/20 blur-[80px] rounded-full"
+          />
+          <motion.div
+            animate={{ x: [20, -20, 20], y: [20, -20, 20] }}
+            transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
+            className="absolute -bottom-32 -right-32 w-80 h-80 bg-purple-500/20 blur-[80px] rounded-full"
+          />
+          <div className="absolute inset-0 opacity-[0.03] bg-[url('https://grainy-gradients.vercel.app/noise.svg')] mix-blend-overlay" />
+
+          {[...Array(15)].map((_, i) => (
+            <motion.div
+              key={`bg-part-${i}`}
+              initial={{ opacity: 0, y: Math.random() * 400, x: Math.random() * 400 }}
+              animate={{
+                y: [null, Math.random() * 400 - 200],
+                opacity: [0, 0.4, 0]
+              }}
+              transition={{
+                duration: 5 + Math.random() * 5,
+                repeat: Infinity,
+                delay: Math.random() * 5,
+                ease: "linear"
+              }}
+              className="absolute w-1 h-1 bg-indigo-300/30 rounded-full"
+            />
+          ))}
+        </div>
+
+        {/* Rocket Animation Area */}
+        <div className="relative z-10 w-full h-56 flex flex-col items-center justify-center mb-4 mt-2">
+
+          {/* Pulsing Halo */}
+          <motion.div
+            animate={{ scale: [1, 1.3, 1], opacity: [0.3, 0.6, 0.3] }}
+            transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-32 h-32 bg-indigo-500/30 rounded-full blur-[40px]"
+          />
+
+          {/* Engine Smoke & Fire Container */}
+          <div className="absolute top-[135px] left-1/2 -translate-x-1/2 w-48 h-48 pointer-events-none flex justify-center">
+            {/* Fire */}
+            <motion.div
+              animate={{ height: ['24px', '36px', '24px'], opacity: [0.8, 1, 0.8] }}
+              transition={{ duration: 0.1, repeat: Infinity, ease: "linear" }}
+              className="absolute top-0 w-3 bg-gradient-to-b from-white via-cyan-400 to-transparent rounded-b-full blur-[2px] origin-top"
+            />
+            <motion.div
+              animate={{ height: ['12px', '18px', '12px'] }}
+              transition={{ duration: 0.05, repeat: Infinity, ease: "linear" }}
+              className="absolute top-0 w-1.5 bg-white rounded-b-full origin-top"
+            />
+
+            {/* Main Engine Smoke */}
+            {[...Array(20)].map((_, i) => (
+              <motion.div
+                key={`smoke-${i}`}
+                initial={{ opacity: 0, scale: 0.5, y: 0, x: 0 }}
+                animate={{
+                  opacity: [0, 0.6, 0],
+                  scale: [0.5, 1.5, 3],
+                  y: [0, 30 + Math.random() * 50],
+                  x: [(Math.random() - 0.5) * 80]
+                }}
+                transition={{
+                  duration: 1.5 + Math.random(),
+                  repeat: Infinity,
+                  delay: Math.random() * 2,
+                  ease: "easeOut"
+                }}
+                className="absolute top-4 w-8 h-8 bg-[#1e293b]/40 rounded-full blur-[10px]"
+              />
+            ))}
+
+            {/* Glowing Embers/Particles rising upwards */}
+            {[...Array(15)].map((_, i) => (
+              <motion.div
+                key={`ember-${i}`}
+                initial={{ opacity: 0, y: 20, x: (Math.random() - 0.5) * 30 }}
+                animate={{
+                  opacity: [0, 1, 0],
+                  y: [-20 - Math.random() * 60],
+                  x: [(Math.random() - 0.5) * 60]
+                }}
+                transition={{
+                  duration: 1 + Math.random() * 2,
+                  repeat: Infinity,
+                  delay: Math.random() * 2,
+                  ease: "easeOut"
+                }}
+                className="absolute top-6 w-1 h-1 bg-cyan-300 rounded-full blur-[1px] shadow-[0_0_5px_#22d3ee]"
+              />
+            ))}
+          </div>
+
+          {/* The Rocket (Floating & Vibrating) */}
+          <motion.div
+            animate={{ y: [-4, 4, -4] }}
+            transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+            className="relative z-10"
+          >
+            <motion.div
+              animate={{
+                x: [-0.5, 0.5, -0.5, 0.5, 0],
+                y: [-0.5, 0.5, -0.5, 0.5, 0],
+              }}
+              transition={{
+                duration: 0.05,
+                repeat: Infinity,
+                ease: "linear"
+              }}
+            >
+              <svg width="120" height="120" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg" className="drop-shadow-[0_10px_20px_rgba(99,102,241,0.5)]">
+                <defs>
+                  <linearGradient id="bodyGrad" x1="100" y1="20" x2="100" y2="150" gradientUnits="userSpaceOnUse">
+                    <stop offset="0%" stopColor="#ffffff" />
+                    <stop offset="100%" stopColor="#cbd5e1" />
+                  </linearGradient>
+                  <linearGradient id="finGrad" x1="40" y1="120" x2="160" y2="180" gradientUnits="userSpaceOnUse">
+                    <stop offset="0%" stopColor="#4f46e5" />
+                    <stop offset="100%" stopColor="#312e81" />
+                  </linearGradient>
+                  <linearGradient id="windowGrad" x1="100" y1="70" x2="100" y2="100" gradientUnits="userSpaceOnUse">
+                    <stop offset="0%" stopColor="#0f172a" />
+                    <stop offset="100%" stopColor="#1e293b" />
+                  </linearGradient>
+                </defs>
+
+                <path d="M100 130 L95 180 L105 180 Z" fill="url(#finGrad)" />
+                <path d="M70 120 C50 140 40 170 40 180 C60 175 80 160 85 140 Z" fill="url(#finGrad)" />
+                <path d="M130 120 C150 140 160 170 160 180 C140 175 120 160 115 140 Z" fill="url(#finGrad)" />
+                <path d="M100 20 C100 20 140 60 140 130 C140 160 100 165 100 165 C100 165 60 160 60 130 C60 60 100 20 100 20 Z" fill="url(#bodyGrad)" />
+                <path d="M100 20 C100 20 115 35 121 55 L79 55 C85 35 100 20 100 20 Z" fill="#e2e8f0" opacity="0.8" />
+                <path d="M79 55 L121 55" stroke="#94a3b8" strokeWidth="1" opacity="0.5" />
+                <circle cx="100" cy="85" r="18" fill="#94a3b8" />
+                <circle cx="100" cy="85" r="14" fill="url(#windowGrad)" />
+                <path d="M92 75 A 14 14 0 0 1 108 75 A 12 12 0 0 0 92 75 Z" fill="#38bdf8" opacity="0.6" />
+                <path d="M62 130 C62 130 100 140 138 130" stroke="#94a3b8" strokeWidth="1.5" opacity="0.3" fill="none" />
+                <path d="M68 100 C68 100 100 110 132 100" stroke="#94a3b8" strokeWidth="1.5" opacity="0.1" fill="none" />
+              </svg>
+            </motion.div>
+          </motion.div>
+        </div>
+
+        {/* Text Content */}
+        <div className="relative z-10 space-y-4 mb-8">
+          <h2 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight flex items-center justify-center gap-2">
+            🚀 Project Launching Soon!
+          </h2>
+          <p className="text-lg text-indigo-200 font-medium">
+            This project is preparing for launch. Stay tuned!
+          </p>
+          <p className="text-sm text-gray-400 max-w-[90%] mx-auto leading-relaxed">
+            Our team is working behind the scenes to build something amazing. Check back soon for updates.
+          </p>
+        </div>
+
+        {/* Action Button */}
+        <motion.button
+          onClick={onClose}
+          whileHover={{ scale: 1.03 }}
+          whileTap={{ scale: 0.97 }}
+          className="relative z-10 px-10 py-3.5 rounded-full font-semibold text-white overflow-hidden group w-full sm:w-auto bg-indigo-600 shadow-[0_0_20px_rgba(79,70,229,0.4)] hover:shadow-[0_0_30px_rgba(79,70,229,0.6)] transition-all duration-300"
+        >
+          <div className="absolute inset-0 bg-gradient-to-r from-indigo-500 to-purple-600 opacity-90 group-hover:opacity-100 transition-opacity" />
+          <div className="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity" />
+          <span className="relative">Got It</span>
+        </motion.button>
+      </motion.div>
+    </motion.div>
+  );
+};
+
 const Projects = () => {
   const [selectedProject, setSelectedProject] = useState(null);
 
@@ -411,8 +630,14 @@ const Projects = () => {
       </div>
 
       <AnimatePresence>
-        {selectedProject && (
+        {selectedProject && !selectedProject.isUpcoming && (
           <ProjectModal
+            project={selectedProject}
+            onClose={() => setSelectedProject(null)}
+          />
+        )}
+        {selectedProject && selectedProject.isUpcoming && (
+          <UpcomingModal
             project={selectedProject}
             onClose={() => setSelectedProject(null)}
           />
